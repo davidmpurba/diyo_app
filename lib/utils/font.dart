@@ -246,8 +246,8 @@ TextStyle? captionSemiBold({
   return GoogleFonts.poppins(
     textStyle: TextStyle(
       color: color,
-      fontWeight: FontWeight.w600,
-      fontSize: 16,
+      fontWeight: FontWeight.w500,
+      fontSize: 18,
       fontFamily: GoogleFonts.poppins().fontFamily,
     ),
   );

@@ -1,6 +1,6 @@
 import 'package:diyo/gen/colors.gen.dart';
+import 'package:diyo/utils/font.dart';
 import 'package:flutter/material.dart';
-
 
 class NavBarWidget extends StatelessWidget {
   const NavBarWidget({
@@ -15,59 +15,61 @@ class NavBarWidget extends StatelessWidget {
         // Remove padding
         padding: const EdgeInsets.symmetric(vertical: 20),
         children: [
+          Container(
+            alignment: Alignment.centerLeft,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                  icon: const Icon(
+                    Icons.line_weight,
+                    color: Colors.white,
+                  ),
+                  onPressed: () => Navigator.pop(context),
+                ),
+                IconButton(
+                  icon: const Icon(
+                    Icons.arrow_back_ios,
+                    color: Colors.white,
+                    size: 20,
+                  ),
+                  onPressed: () => Navigator.pop(context),
+                ),
+              ],
+            ),
+          ),
           const SizedBox(height: 20),
           ListTile(
             leading: const Icon(
               Icons.home,
               color: ColorName.white,
             ),
-            title: const Text('Dashboard'),
+            title: const Text('Home'),
+            textColor: ColorName.white,
+            onTap: () => null,
+          ),
+          ListTile(
+            leading: const Icon(Icons.checklist, color: ColorName.white),
+            title: const Text('Order Queue'),
             textColor: ColorName.white,
             onTap: () => null,
           ),
           ListTile(
             leading: const Icon(
-                Icons.settings_suggest, color: ColorName.white),
-            title: const Text('Data Penjualan'),
-            textColor: ColorName.white,
-            onTap: () => null,
-          ),
-          ListTile(
-            leading: const Icon(
-              Icons.stacked_bar_chart,
+              Icons.grid_view_sharp,
               color: ColorName.white,
             ),
-            title: const Text('Data Produksi'),
+            title: const Text('Menu'),
             textColor: ColorName.white,
             onTap: () => null,
           ),
           ListTile(
-            leading: const Icon(
-              Icons.storage,
-              color: ColorName.white,
+            title: Text(
+              'Logout',
+              style: captionSemiBold(),
             ),
-            title: const Text('Data Bahan Baku'),
             textColor: ColorName.white,
             onTap: () => null,
-          ),
-          ListTile(
-            leading: const Icon(
-              Icons.person_add_alt_1_sharp,
-              color: ColorName.white,
-            ),
-            textColor: ColorName.white,
-            title: const Text('Profile'),
-            onTap: () => null,
-          ),
-          const Divider(),
-          ListTile(
-            leading: const Icon(
-              Icons.logout,
-              color: ColorName.white,
-            ),
-            title: const Text('Keluar'),
-            textColor: ColorName.white,
-            onTap: () =>null,
           ),
         ],
       ),
