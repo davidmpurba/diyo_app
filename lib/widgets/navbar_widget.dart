@@ -1,6 +1,8 @@
 import 'package:diyo/gen/colors.gen.dart';
+import 'package:diyo/helpers/navigation_helper.dart';
 import 'package:diyo/utils/font.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 class NavBarWidget extends StatelessWidget {
   const NavBarWidget({
@@ -69,7 +71,7 @@ class NavBarWidget extends StatelessWidget {
               style: captionSemiBold(),
             ),
             textColor: ColorName.white,
-            onTap: () => null,
+            onTap: () => GetIt.I<NavigationHelper>().goToLogin(),
           ),
         ],
       ),

@@ -14,3 +14,10 @@ enum Language {
   indonesia,
   english,
 }
+
+enum Status{
+  available,
+  seated,
+  ordered,
+  billing
+}
