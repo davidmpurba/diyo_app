@@ -16,8 +16,7 @@ class MenuWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       hoverColor: Colors.transparent,
-      onTap: () {
-      },
+      onTap: onTap,
       child: Container(
         width: 70,
         height: 70,

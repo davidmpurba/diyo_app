@@ -1,5 +1,7 @@
 import 'package:diyo/gen/assets.gen.dart';
 import 'package:diyo/gen/colors.gen.dart';
+import 'package:diyo/models/menu.dart';
+import 'package:diyo/models/table.dart';
 import 'package:diyo/modules/home/widget/legend_widget_page.dart';
 import 'package:diyo/modules/home/widget/menu_widget_page.dart';
 import 'package:diyo/modules/home/widget/table_widget_page.dart';
@@ -7,30 +9,62 @@ import 'package:diyo/modules/top_level_bloc/cubit/form_key_cubit.dart';
 import 'package:diyo/utils/font.dart';
 import 'package:diyo/utils/functions.dart';
 import 'package:diyo/widgets/custom_outline_button_widget.dart';
+import 'package:diyo/widgets/custom_radio_button_widget.dart';
 import 'package:diyo/widgets/navbar_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'detail_home_page.dart';
+
+part '../widget/ordered_widget.dart';
+
+part '../widget/paymen_widget.dart';
+
+part '../widget/seated_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final initialTable = <TableList>[
+      TableList('Table 1', Colors.white, MenuItem(name: '', price: 0)),
+      TableList('Table 2', Colors.white, MenuItem(name: '', price: 0)),
+      TableList('Table 3', Colors.white, MenuItem(name: '', price: 0)),
+      TableList('Table 4', Colors.white, MenuItem(name: '', price: 0)),
+      TableList('Table 5', Colors.white, MenuItem(name: '', price: 0)),
+      TableList('Table 6', Colors.white, MenuItem(name: '', price: 0)),
+    ];
+
     return MultiBlocProvider(
       providers: [
         BlocProvider(
           create: (context) => ToggleCubit(),
         ),
         BlocProvider(
-          create: (context) => MakeOrderCubit(),
+          create: (context) => IndexTable(),
+        ),
+        BlocProvider(
+          create: (context) => StatusOrderCubit(),
         ),
         BlocProvider(
           create: (context) => TableNameCubit(),
         ),
         BlocProvider(
-          create: (context) => TableStatusCubit(),
+          create: (context) => TableStatusCubit(Colors.white),
+        ),
+        BlocProvider(
+          create: (context) => MenuOrderCubit(),
+        ),
+        BlocProvider(
+          create: (context) => StatusBillingCubit(),
+        ),
+        BlocProvider(
+          create: (context) => TableCubit(initialTable),
+        ),
+        BlocProvider(
+          create: (context) => RadioButtonCubit('Cash'),
         ),
       ],
       child: Scaffold(
@@ -55,7 +89,7 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isOrder = context.watch<MakeOrderCubit>().state;
+    final isOrder = context.watch<StatusOrderCubit>().state;
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Row(
@@ -77,15 +111,27 @@ class HomeBody extends StatelessWidget {
                           children: [
                             MenuWidget(
                               text: 'Menu 1',
-                              onTap: () {},
+                              onTap: () {
+                                context.read<MenuOrderCubit>().addItem(
+                                      MenuItem(name: 'Menu 1', price: 20000),
+                                    );
+                              },
                             ),
                             MenuWidget(
                               text: 'Menu 2',
-                              onTap: () {},
+                              onTap: () {
+                                context.read<MenuOrderCubit>().addItem(
+                                      MenuItem(name: 'Menu 2', price: 30000),
+                                    );
+                              },
                             ),
                             MenuWidget(
                               text: 'Menu 3',
-                              onTap: () {},
+                              onTap: () {
+                                context.read<MenuOrderCubit>().addItem(
+                                      MenuItem(name: 'Menu 3', price: 10000),
+                                    );
+                              },
                             ),
                             MenuWidget(
                               text: 'Menu 1',
@@ -119,48 +165,36 @@ class HomeBody extends StatelessWidget {
                 : Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        padding: const EdgeInsets.all(20),
-                        width: 500,
-                        height: 350,
-                        child: GridView.count(
-                          mainAxisSpacing: 20,
-                          crossAxisSpacing: 20,
-                          crossAxisCount: 3,
-                          children: [
-                            TableWidget(
-                              text: 'Table 1',
-                              color: Colors.white,
-                              borderColor: Colors.red,
-                              onTap: () {},
+                      BlocBuilder<TableCubit, List<TableList>>(
+                        builder: (context, state) {
+                          return Container(
+                            padding: const EdgeInsets.all(20),
+                            width: 500,
+                            height: 350,
+                            child: GridView.builder(
+                              itemCount: state.length,
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3,
+                                mainAxisSpacing: 20,
+                                crossAxisSpacing: 20,
+                              ),
+                              itemBuilder: (context, index) {
+                                return TableWidget(
+                                  text: state[index].text,
+                                  onTap: () {
+                                    context.read<ToggleCubit>().setStatus(true);
+                                    context
+                                        .read<TableNameCubit>()
+                                        .setTableName(state[index].text);
+                                    context.read<IndexTable>().getIndex(index);
+                                  },
+                                  color: state[index].status,
+                                );
+                              },
                             ),
-                            TableWidget(
-                              text: 'Table 2',
-                              color: Colors.red,
-                              onTap: () {},
-                            ),
-                            TableWidget(
-                              text: 'Table 3',
-                              color: Colors.red,
-                              onTap: () {},
-                            ),
-                            TableWidget(
-                              text: 'Table 4',
-                              color: Colors.red,
-                              onTap: () {},
-                            ),
-                            TableWidget(
-                              text: 'Table 5',
-                              color: Colors.blue,
-                              onTap: () {},
-                            ),
-                            TableWidget(
-                              text: 'Table 6',
-                              color: Colors.yellow,
-                              onTap: () {},
-                            ),
-                          ],
-                        ),
+                          );
+                        },
                       ),
                       Container(
                         width: 500,

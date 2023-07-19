@@ -121,7 +121,6 @@ TextStyle? heading5Bold({
 
 TextStyle? heading5SemiBold({
   Color? color,
-  
   TextDecoration? decoration,
 }) {
   return GoogleFonts.poppins(
@@ -147,7 +146,6 @@ TextStyle? heading6SemiBold({
     ),
   );
 }
-
 
 TextStyle? heading6Regular({
   Color? color,
@@ -262,7 +260,7 @@ TextStyle? body1Underline({
       fontWeight: FontWeight.w500,
       fontSize: 14,
       fontFamily: GoogleFonts.poppins().fontFamily,
-      decoration: TextDecoration.underline
+      decoration: TextDecoration.underline,
     ),
   );
 }

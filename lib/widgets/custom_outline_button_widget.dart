@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class CustomOutlineButtonWidget extends StatelessWidget {
   const CustomOutlineButtonWidget({
-    Key? key,
+    super.key,
     required this.label,
     required this.onPressed,
     this.icon,
@@ -13,7 +13,7 @@ class CustomOutlineButtonWidget extends StatelessWidget {
     this.labelStyle,
     this.height,
     this.borderColor,
-  }) : super(key: key);
+  });
 
   final String label;
   final Widget? icon;

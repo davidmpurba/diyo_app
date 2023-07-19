@@ -4,13 +4,13 @@ import 'dart:async';
 import 'dart:io' show SocketException;
 
 import 'package:dio/dio.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:get_it/get_it.dart';
-import 'package:retry/retry.dart';
 import 'package:diyo/models/base_response.dart';
 import 'package:diyo/utils/constants.dart';
 import 'package:diyo/utils/exceptions.dart';
 import 'package:diyo/utils/typedefs.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get_it/get_it.dart';
+import 'package:retry/retry.dart';
 
 /// Base class for all the requests
 class ApiServices {

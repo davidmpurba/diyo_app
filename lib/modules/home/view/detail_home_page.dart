@@ -8,10 +8,11 @@ class DetailTableWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isSelected = context.watch<ToggleCubit>().state;
-    final status = context.watch<TableStatusCubit>().state;
+    final indexTable = context.watch<IndexTable>().state;
+    final status = context.watch<TableCubit>().state[indexTable].status;
 
     return Container(
-      width: MediaQuery.of(context).size.width * 0.3,
+      width: MediaQuery.of(context).size.width * 0.35,
       height: MediaQuery.of(context).size.height,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -21,22 +22,18 @@ class DetailTableWidget extends StatelessWidget {
       child: isSelected
           ? Column(
               children: [
-
                 Center(
                   child: Text(
                     context.watch<TableNameCubit>().state,
                     style: heading4SemiBold(),
                   ),
                 ),
-
                 const SizedBox(height: 20),
-
                 Text(
                   'Status : ${checkStatus(status)}',
                   style: body1(color: ColorName.textSecondary),
                 ),
                 const SizedBox(height: 20),
-
                 if (checkStatus(status) == 'Available') ...[
                   Text(
                     'Action',
@@ -45,14 +42,17 @@ class DetailTableWidget extends StatelessWidget {
                   const SizedBox(height: 10),
                   CustomOutlineButtonWidget(
                     label: 'Print QR',
-                    onPressed: () {},
+                    onPressed: () {
+                      context.read<TableCubit>().updateStatus(
+                        context.read<IndexTable>().state,
+                        Colors.red,
+                      );
+                    },
                   )
                 ],
                 if (checkStatus(status) == 'Seated' &&
-                    context.watch<MakeOrderCubit>().state) ...[
-                  Text('Ordered Menu'),
-                  SizedBox(height: 20),
-
+                    context.watch<StatusOrderCubit>().state) ...[
+                  const SeatedWidget(),
                 ] else if (checkStatus(status) == 'Seated') ...[
                   Text(
                     'Action',
@@ -62,35 +62,23 @@ class DetailTableWidget extends StatelessWidget {
                   CustomOutlineButtonWidget(
                     label: 'Make an Order',
                     onPressed: () {
-                      context.read<MakeOrderCubit>().setStatus(true);
+                      context.read<StatusOrderCubit>().setStatus(true);
+                      context.read<TableCubit>().updateStatus(
+                        context.read<IndexTable>().state,
+                        Colors.yellow,
+                      );
                     },
                   )
                 ],
-
-                if (checkStatus(status) == 'Ordered') ...[
-                  Text(
-                    'Action',
-                    style: subtitle2(color: ColorName.textSecondary),
-                  ),
-                  const SizedBox(height: 10),
-                  CustomOutlineButtonWidget(
-                    label: 'Print QR',
-                    onPressed: () {},
-                  )
+                if (checkStatus(status) == 'Ordered' &&
+                    context.watch<StatusOrderCubit>().state) ...[
+                  const SeatedWidget(),
+                ] else if (checkStatus(status) == 'Ordered') ...[
+                  const OrderedWidget(),
                 ],
-
                 if (checkStatus(status) == 'Billing') ...[
-                  Text(
-                    'Action',
-                    style: subtitle2(color: ColorName.textSecondary),
-                  ),
-                  const SizedBox(height: 10),
-                  CustomOutlineButtonWidget(
-                    label: 'Print QR',
-                    onPressed: () {},
-                  )
+                  const PaymentWidget()
                 ],
-
               ],
             )
           : Assets.images.logo.image(),

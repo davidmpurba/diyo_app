@@ -3,12 +3,12 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
-import 'package:get_it/get_it.dart';
 import 'package:diyo/helpers/flash_message_helper.dart';
 import 'package:diyo/helpers/user_helper.dart';
 import 'package:diyo/services/hive_service.dart';
 import 'package:diyo/utils/constants.dart';
 import 'package:diyo/utils/get_it.dart';
+import 'package:get_it/get_it.dart';
 
 /// Used to initialize the application in splashscreen
 class MainRepository {

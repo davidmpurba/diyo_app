@@ -15,11 +15,11 @@ abstract class AppState extends Equatable {
 /// Initial state of the app
 class AppInitial extends AppState {
   /// Called on app initial state and refresh method
-  const AppInitial(User? user) : super(user);
+  const AppInitial(super.user);
 }
 
 /// Loading state of the app
 class AppLoading extends AppState {
   /// Called on refresh method
-  const AppLoading(User? user) : super(user);
+  const AppLoading(super.user);
 }

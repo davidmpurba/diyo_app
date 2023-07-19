@@ -1,8 +1,8 @@
+import 'package:diyo/gen/colors.gen.dart';
+import 'package:diyo/helpers/navigation_helper.dart';
 import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:diyo/gen/colors.gen.dart';
-import 'package:diyo/helpers/navigation_helper.dart';
 
 class FlashMessageHelper {
   /// [message] nullable because we need to create stub in the tests

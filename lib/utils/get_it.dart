@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:get_it/get_it.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:diyo/helpers/flash_message_helper.dart';
 import 'package:diyo/helpers/navigation_helper.dart';
 import 'package:diyo/helpers/notification_helper.dart';
 import 'package:diyo/helpers/user_helper.dart';
 import 'package:diyo/services/hive_service.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get_it/get_it.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 /// Container for DI
 class GetItContainer {

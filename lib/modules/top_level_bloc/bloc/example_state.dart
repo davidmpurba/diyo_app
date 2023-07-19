@@ -18,7 +18,7 @@ class ExampleLoading extends ExampleState {
 }
 
 class ExampleLoaded extends ExampleState {
-  const ExampleLoaded(List<Example> clients) : super(clients);
+  const ExampleLoaded(super.clients);
 }
 
 class ExampleError extends ExampleState {

@@ -48,13 +48,13 @@ class NavBarWidget extends StatelessWidget {
             ),
             title: const Text('Home'),
             textColor: ColorName.white,
-            onTap: () => null,
+            onTap: () {},
           ),
           ListTile(
             leading: const Icon(Icons.checklist, color: ColorName.white),
             title: const Text('Order Queue'),
             textColor: ColorName.white,
-            onTap: () => null,
+            onTap: () {},
           ),
           ListTile(
             leading: const Icon(
@@ -63,7 +63,7 @@ class NavBarWidget extends StatelessWidget {
             ),
             title: const Text('Menu'),
             textColor: ColorName.white,
-            onTap: () => null,
+            onTap: () {},
           ),
           ListTile(
             title: Text(

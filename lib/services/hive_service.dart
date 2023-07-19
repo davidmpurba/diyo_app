@@ -1,8 +1,8 @@
 // ignore_for_file: cascade_invocations
 
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:diyo/models/mobile_config.dart';
 import 'package:diyo/models/user.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 /// Container for store data in local storage.
 class HiveService {
@@ -17,13 +17,13 @@ class HiveService {
   final _keyMobileConfig = 'key-mobile-config';
 
   /// Initial HiveFlutter, used in MainRepository
-  Future init() async {
+  Future<dynamic> init() async {
     await _hive.initFlutter();
     await _openBoxes();
   }
 
   /// Initial Open data from local storage.
-  Future _openBoxes() async {
+  Future<dynamic> _openBoxes() async {
     if (!_hive.isBoxOpen(_boxMobileConfig)) {
       _hive.registerAdapter<MobileConfig>(MobileConfigAdapter());
       await _hive.openBox<MobileConfig>(_boxMobileConfig);
@@ -47,7 +47,7 @@ class HiveService {
     _hive.box<User>(_boxUser).put(_keyUser, data);
   }
 
-  Future deleteUser() {
+  Future<dynamic> deleteUser() {
     return _hive.box<User>(_boxUser).delete(_keyUser);
   }
 

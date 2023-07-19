@@ -3,7 +3,7 @@ import 'package:diyo/repositories/base_repository.dart';
 import 'package:diyo/utils/constants.dart';
 
 class ExampleRepository extends BaseRepository {
-  Future<BaseResponse<List>> getExamples(String key) async {
+  Future<BaseResponse<List<dynamic>>> getExamples(String key) async {
     final response = await get(
       ApiEndPoint.kApiExample,
       queryParameters: <String, String>{
@@ -13,7 +13,7 @@ class ExampleRepository extends BaseRepository {
       },
     );
 
-    final result = responseWrapper<List>(response);
+    final result = responseWrapper<List<dynamic>>(response);
 
     return BaseResponse.success(result);
   }

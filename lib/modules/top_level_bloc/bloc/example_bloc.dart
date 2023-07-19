@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:diyo/models/example.dart';
 import 'package:diyo/repositories/example_repository.dart';
 import 'package:diyo/utils/wrappers/error_wrapper.dart';
+import 'package:equatable/equatable.dart';
 
 part 'example_event.dart';
 
@@ -17,7 +17,10 @@ class ExampleBloc extends Bloc<ExampleEvent, ExampleState> {
 
   final _repo = ExampleRepository();
 
-  Future _searchExample(SearchExample event, Emitter emit) async {
+  Future<dynamic> _searchExample(
+    SearchExample event,
+    Emitter<dynamic> emit,
+  ) async {
     emit(ExampleLoading(state));
     final result = await ErrorWrapper.asyncGuard(
       () => _repo.getExamples(event.key),

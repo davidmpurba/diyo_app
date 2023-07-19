@@ -1,14 +1,14 @@
 import 'dart:io';
 
+import 'package:diyo/app/cubit/app_cubit.dart';
+import 'package:diyo/gen/colors.gen.dart';
+import 'package:diyo/helpers/navigation_helper.dart';
+import 'package:diyo/utils/get_it.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:diyo/app/cubit/app_cubit.dart';
-import 'package:diyo/gen/colors.gen.dart';
-import 'package:diyo/helpers/navigation_helper.dart';
-import 'package:diyo/utils/get_it.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -22,7 +22,7 @@ class MyHttpOverrides extends HttpOverrides {
 ///MainApp
 class App extends StatefulWidget {
   ///Constructor for main flutter app
-  const App({Key? key}) : super(key: key);
+  const App({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -65,7 +65,7 @@ class _AppState extends State<App> {
 }
 
 class _AppBody extends StatelessWidget {
-  const _AppBody({Key? key, required this.colorScheme}) : super(key: key);
+  const _AppBody({required this.colorScheme});
 
   final ColorScheme colorScheme;
 
@@ -88,27 +88,25 @@ class _AppBody extends StatelessWidget {
       routeInformationParser: appRouter.routeInformationParser,
       routerDelegate: appRouter.routerDelegate,
       theme: ThemeData(
-        colorScheme: colorScheme,
         primaryColor: colorScheme.primary,
-        backgroundColor: colorScheme.background,
         textTheme: GoogleFonts.poppinsTextTheme(
           const TextTheme(
-            subtitle1: TextStyle(
+            titleMedium: TextStyle(
               color: ColorName.textPrimary,
             ),
-            subtitle2: TextStyle(
+            titleSmall: TextStyle(
               color: ColorName.textSecondary,
             ),
-            headline5: TextStyle(
+            headlineSmall: TextStyle(
               color: ColorName.textPrimary,
             ),
-            headline6: TextStyle(
+            titleLarge: TextStyle(
               color: ColorName.textPrimary,
             ),
-            bodyText2: TextStyle(
+            bodyMedium: TextStyle(
               color: ColorName.textPrimary,
             ),
-            bodyText1: TextStyle(
+            bodyLarge: TextStyle(
               color: ColorName.textSecondary,
             ),
           ),
@@ -119,6 +117,7 @@ class _AppBody extends StatelessWidget {
             borderRadius: BorderRadius.circular(4),
           ),
         ),
+        colorScheme: colorScheme.copyWith(background: colorScheme.background),
       ),
     );
   }

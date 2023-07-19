@@ -1,6 +1,5 @@
 import 'package:diyo/gen/assets.gen.dart';
 import 'package:diyo/helpers/navigation_helper.dart';
-import 'package:diyo/modules/home/view/home_page.dart';
 import 'package:diyo/utils/font.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';

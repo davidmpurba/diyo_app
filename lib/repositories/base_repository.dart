@@ -1,7 +1,5 @@
 import 'package:diyo/models/base_response.dart';
 import 'package:diyo/services/api_services.dart';
-import 'package:diyo/utils/enums.dart';
-import 'package:diyo/utils/exceptions.dart';
 import 'package:diyo/utils/typedefs.dart';
 import 'package:diyo/utils/wrappers/response_wrapper.dart';
 

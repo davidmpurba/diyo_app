@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
-
 import 'package:diyo/gen/assets.gen.dart';
 import 'package:diyo/gen/colors.gen.dart';
+import 'package:flutter/material.dart';
 
 class SplashPage extends StatelessWidget {
-  const SplashPage({Key? key}) : super(key: key);
+  const SplashPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,12 +15,12 @@ class SplashPage extends StatelessWidget {
           top: 16,
           child: Assets.images.logoTranstrack.image(width: 180),
         ),
-        Center(
+        const Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               FlutterLogo(),
-              const Text(
+              Text(
                 'RegisT Operational',
                 style: TextStyle(
                   fontSize: 14,
@@ -29,8 +28,8 @@ class SplashPage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 8),
-              const CircularProgressIndicator(
+              SizedBox(height: 8),
+              CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(
                   ColorName.primary,
                 ),

@@ -1,25 +1,25 @@
 // ignore_for_file: overridden_fields
 
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
-import 'package:get_it/get_it.dart';
-import 'package:logger/logger.dart';
 import 'package:diyo/helpers/flash_message_helper.dart';
 import 'package:diyo/helpers/user_helper.dart';
 import 'package:diyo/models/message.dart';
 import 'package:diyo/models/meta.dart';
 import 'package:diyo/utils/enums.dart';
 import 'package:diyo/utils/typedefs.dart';
+import 'package:flutter/foundation.dart';
+import 'package:get_it/get_it.dart';
+import 'package:logger/logger.dart';
 
 /// Base class for handle response of dio request
 class ResponseOfRequest<T> extends BaseResponse<T> {
   /// Constructor that able to use attribute parent
   ResponseOfRequest({
-    required ResponseStatus status,
-    String? message,
-    Meta? meta,
-    dynamic data,
-  }) : super(data: data, message: message, meta: meta, status: status);
+    required ResponseStatus super.status,
+    super.message,
+    super.meta,
+    super.data,
+  });
 
   factory ResponseOfRequest.success({
     required dynamic data,
