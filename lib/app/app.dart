@@ -80,7 +80,7 @@ class _AppBody extends StatelessWidget {
     final appRouter = GetIt.I<NavigationHelper>().goRouter;
 
     return MaterialApp.router(
-      title: 'Template | TransTRACK.ID',
+      title: 'Diyo',
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,

@@ -233,19 +233,11 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/illustration-login.svg
-  SvgGenImage get illustrationLogin =>
-      const SvgGenImage('assets/images/illustration-login.svg');
-
-  /// File path: assets/images/logo-transtrack.png
-  AssetGenImage get logoTranstrack =>
-      const AssetGenImage('assets/images/logo-transtrack.png');
-
   /// File path: assets/images/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
 
   /// List of all assets
-  List<dynamic> get values => [illustrationLogin, logoTranstrack, logo];
+  List<AssetGenImage> get values => [logo];
 }
 
 class $AssetsTranslationsGen {

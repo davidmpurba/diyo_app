@@ -2,7 +2,6 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:diyo/models/user.dart';
-import 'package:diyo/repositories/main_repository.dart';
 import 'package:diyo/services/hive_service.dart';
 import 'package:equatable/equatable.dart';
 import 'package:get_it/get_it.dart';
@@ -15,8 +14,6 @@ class AppCubit extends Cubit<AppState> {
   final String lang;
 
   Future<dynamic> init() async {
-    final _service = MainRepository();
-    await _service.init(lang);
 
     await refresh();
   }

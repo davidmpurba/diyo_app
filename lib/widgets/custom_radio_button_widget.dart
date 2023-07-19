@@ -20,6 +20,7 @@ class CustomRadioButton extends StatelessWidget {
             return ListTile(
               title: Text(option),
               leading: Radio<String>(
+                activeColor: Colors.red,
                 value: option,
                 groupValue: selectedOption,
                 onChanged: (value) {
